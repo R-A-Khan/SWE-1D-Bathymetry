@@ -1,8 +1,5 @@
-% 
-% function [eta_exct0, beta_optimum, beta_exct0, X, err, err_std, grad, grad_std, cost, cost_std,  Y_ex, Y_opt, x0_inds] = ...
-%     data_assimil_bath_CG_tikhonov_multnorm(N,n_obs,rand_x0,x0_min,dmu,ntrial,tmax,xmax,iter_max,line_min,smooth_grad,filt, tau_n, amp_bathy, ic_per, bathy_per, ...
-%     bathy_np_type, amp_ic, k_ic, k_bathy, phi_bathy, conj_grad_type, iter_chunk, a, c, cfl, noisy_obs, regularisation, tikh_par, reg_norm, print_iter)
-
+% Data assimilation loop to generate simulations to be used with Sobol Sensitivity Analysis.
+%  Parameters are the random sample generated using a latin hypercube sampling strategy.
 
 function [Y_eta, Y_beta] = DA_bath_sobol(parameters)
 % INPUT: parameters (3 x 1):    
@@ -291,7 +288,7 @@ end
                         % STeepest direction
                         b = 0;
                     elseif conj_grad_type == 2
-    %                   % Polak-Ribière
+    %                   % Polak-RibiÃ¨re
                         b = (steepest_direction(:,iter).' *  ((steepest_direction(:,iter)) - steepest_direction(:,iter-1) )) / (steepest_direction(:,iter-1).' * steepest_direction(:,iter-1));
     %                   % 3rd 
     %                   else
